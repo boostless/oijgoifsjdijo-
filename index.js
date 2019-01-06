@@ -192,4 +192,4 @@ if(coinAmt === baseAmt){
 });
 
 
-bot.login(procces.env.token);
+bot.login(procces.env.TOKEN);
