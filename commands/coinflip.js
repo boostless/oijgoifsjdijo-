@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://jonas68824:vakaris12@testingofficerbot-tlndb.mongodb.net/officerbot", {
+mongoose.connect(process.env.MONGOOSE, {
   useNewUrlParser: true });
 
 const Money = require("../models/money.js");
