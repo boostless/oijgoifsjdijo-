@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGOOSE", {
+mongoose.connect(process.env.MONGOOSE, {
   useNewUrlParser: true });
 
   const Money = require("../models/money.js");
