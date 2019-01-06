@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args)=>{
 
     if(err) console.log(err);
 
-    if(coins < 1) return message.reply("Tu neturi žetonu");//Ziuri ar turi zetonu
+    if(coins < 0.1) return message.reply("Tu neturi žetonu");//Ziuri ar turi zetonu
 
     if(coins < suma) return message.reply("Tu neturi tiek žetonu");//Ziuri ar dedi nedaugiau kiek turi
 
