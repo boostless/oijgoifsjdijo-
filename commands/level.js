@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
-mongoose.connect(procces.env.mongoose, {
+mongoose.connect(process.env.MONGOOSE, {
   useNewUrlParser: true });//MOngoose database connect
 const XP = require("../models/xp.js");
 
