@@ -40,7 +40,7 @@ if(msg.includes("HERBAS")){
     .setAuthor(message.author.username)
     .addField("Laimėjai!💸", wCoins)
     .setColor("#ffc132")
-    .addField("Dabar turi", money.money + wCoins);
+    .addField("Dabar turi", money.money);
 
     message.channel.send(winEmbed).then(msg => {msg.delete(5000)});
     money.money = money.money + wCoins;
@@ -51,7 +51,7 @@ if(msg.includes("HERBAS")){
     .setAuthor(message.author.username)
     .addField("Pralošei😰", suma)
     .setColor("#ffc132")
-    .addField("Dabar turi", money.money - suma);
+    .addField("Dabar turi", money.money);
 
     message.channel.send(losEmbed).then(msg => {msg.delete(5000)});
 
@@ -73,7 +73,7 @@ if(msg.includes("SKAICIUS")){
     .setAuthor(message.author.username)
     .addField("Laimėjai!💸", wCoins)
     .setColor("#ffc132")
-    .addField("Dabar turi", money.money + wCoins);
+    .addField("Dabar turi", money.money);
 
     message.channel.send(winEmbed).then(msg => {msg.delete(5000)});
     money.money = money.money + wCoins;
@@ -84,7 +84,7 @@ if(msg.includes("SKAICIUS")){
     .setAuthor(message.author.username)
     .addField("Pralošei😰", suma)
     .setColor("#ffc132")
-    .addField("Dabar turi", money.money - suma);
+    .addField("Dabar turi", money.money);
 
     message.channel.send(losEmbed).then(msg => {msg.delete(5000)});
 
