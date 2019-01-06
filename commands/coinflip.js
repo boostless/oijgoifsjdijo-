@@ -56,7 +56,6 @@ if(msg.includes("HERBAS")){
 
     message.channel.send(losEmbed).then(msg => {msg.delete(5000)});
 
-    money.money = money.money - args[1];
     money.save();
     return;
   }
@@ -90,7 +89,6 @@ if(msg.includes("SKAICIUS")){
 
     message.channel.send(losEmbed).then(msg => {msg.delete(5000)});
 
-    money.money = money.money - args[1];
     money.save();
     return;
   }
