@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args)=>{
 if(msg.includes("HERBAS")){
   //Herbas
   money.money = money.money - suma;
-  money.save();
+
   if(random == 0){
     wCoins = suma * 2;
 
@@ -44,8 +44,7 @@ if(msg.includes("HERBAS")){
 
     message.channel.send(winEmbed).then(msg => {msg.delete(5000)});
     money.money = money.money + wCoins;
-    money.save();
-    return;
+
   }else{
 
     let losEmbed = new Discord.RichEmbed()
@@ -56,13 +55,15 @@ if(msg.includes("HERBAS")){
 
     message.channel.send(losEmbed).then(msg => {msg.delete(5000)});
 
-    return;
+
   }
+  money.save();
+  return;
 };
 
 if(msg.includes("SKAICIUS")){
   money.money = money.money - suma;
-  money.save();
+
   
   //Herbas
   if(random == 0){
@@ -76,8 +77,7 @@ if(msg.includes("SKAICIUS")){
 
     message.channel.send(winEmbed).then(msg => {msg.delete(5000)});
     money.money = money.money + wCoins;
-    money.save();
-    return;
+
   }else{
 
     let losEmbed = new Discord.RichEmbed()
@@ -89,8 +89,10 @@ if(msg.includes("SKAICIUS")){
     message.channel.send(losEmbed).then(msg => {msg.delete(5000)});
 
 
-    return;
+
   }
+  money.save();
+  return;
 };
 
 
