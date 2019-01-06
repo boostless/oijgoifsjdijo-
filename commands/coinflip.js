@@ -42,7 +42,7 @@ if(msg.includes("HERBAS")){
     .setColor("#ffc132")
     .addField("Dabar turi", money.money);
 
-    message.channel.send(winEmbed).then(msg => {msg.delete(5000)});
+    message.channel.send(winEmbed).then(msg => {msg.delete(7000)});
     money.money = money.money + wCoins;
 
   }else{
@@ -53,7 +53,7 @@ if(msg.includes("HERBAS")){
     .setColor("#ffc132")
     .addField("Dabar turi", money.money);
 
-    message.channel.send(losEmbed).then(msg => {msg.delete(5000)});
+    message.channel.send(losEmbed).then(msg => {msg.delete(7000)});
 
 
   }
@@ -75,7 +75,7 @@ if(msg.includes("SKAICIUS")){
     .setColor("#ffc132")
     .addField("Dabar turi", money.money);
 
-    message.channel.send(winEmbed).then(msg => {msg.delete(5000)});
+    message.channel.send(winEmbed).then(msg => {msg.delete(7000)});
     money.money = money.money + wCoins;
 
   }else{
@@ -86,7 +86,7 @@ if(msg.includes("SKAICIUS")){
     .setColor("#ffc132")
     .addField("Dabar turi", money.money);
 
-    message.channel.send(losEmbed).then(msg => {msg.delete(5000)});
+    message.channel.send(losEmbed).then(msg => {msg.delete(7000)});
 
 
 
