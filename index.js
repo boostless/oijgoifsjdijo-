@@ -3,7 +3,6 @@ const Discord = require("discord.js");
 const mongoose = require("mongoose");
 const fs = require("fs")
 const bot = new Discord.Client({disableEveryone: true});
-const antispam = require("discord-anti-spam");
 bot.commands = new Discord.Collection();
 mongoose.connect(process.env.MONGOOSE, {
   useNewUrlParser: true });//MOngoose database
@@ -44,17 +43,6 @@ bot.on("guildMemberAdd", member => {
   member.addRole(role)
 });
 
-antispam(bot, {
-  warnBuffer: 5, //Maximum amount of messages allowed to send in the interval time before getting warned.
-  maxBuffer: 10, // Maximum amount of messages allowed to send in the interval time before getting banned.
-  interval: 1000, // Amount of time in ms users can send a maximum of the maxBuffer variable before getting banned.
-  warningMessage: "baik spaminti arba gausi per pakauši.", // Warning message send to the user indicating they are going to fast.
-  banMessage: "buvo užbanintas už spaminima, gal dar kažkas nori?", // Ban message, always tags the banned user in front of it.
-  maxDuplicatesWarning: 6,// Maximum amount of duplicate messages a user can send in a timespan before getting warned
-  maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned
-  deleteMessagesAfterBanForPastDays: 7, // Delete the spammed messages after banning for the past x days.
-  exemptUsers: ["Boost#7515", "MldcČiūvas#0591", "BotOfficer#2653", "Lincax#8383"]
-});
 
 
 bot.on("message", async message => {
