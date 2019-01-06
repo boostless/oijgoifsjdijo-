@@ -40,7 +40,7 @@ if(msg.includes("HERBAS")){
     .setAuthor(message.author.username)
     .addField("Laimėjai!💸", wCoins)
     .setColor("#ffc132")
-    .addField("Dabar turi", money.money);
+    .addField("Dabar turi", money.money + wCoins);
 
     message.channel.send(winEmbed).then(msg => {msg.delete(7000)});
     money.money = money.money + wCoins;
@@ -73,7 +73,7 @@ if(msg.includes("SKAICIUS")){
     .setAuthor(message.author.username)
     .addField("Laimėjai!💸", wCoins)
     .setColor("#ffc132")
-    .addField("Dabar turi", money.money);
+    .addField("Dabar turi", money.money + wCoins);
 
     message.channel.send(winEmbed).then(msg => {msg.delete(7000)});
     money.money = money.money + wCoins;
