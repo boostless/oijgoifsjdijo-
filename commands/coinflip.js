@@ -3,102 +3,123 @@ const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGOOSE, {
   useNewUrlParser: true });
 
-const Money = require("../models/money.js");
+  const Money = require("../models/money.js");
+    let cooldown = new Set();
+  module.exports.run = async (bot, message, args)=>{
 
-module.exports.run = async (bot, message, args)=>{
+    if(cooldown.has(message.author.id)){
+      message.channel.send("Numalšintas 10 sekundžiu").then(msg => {msg.delete(5000)});
+      message.delete();
+      return;
+    }
+    cooldown.add(message.author.id);
+    setTimeout(() => {
+      cooldown.delete(message.author.id);
+    }, 10000);
 
-  await message.delete();
-  //$flip herbas/skaicius amount
-  let random = Math.floor(Math.random() * 2);
-  const msg = message.content.toUpperCase();
-  let suma = args[1];
 
-  Money.findOne({
-    userID: message.author.id,
-   serverID: message.guild.id
-  }, (err, money) => {
+    await message.delete();
+    //$flip herbas/skaicius amount
+    let random = Math.floor(Math.random() * 2);
+    const msg = message.content.toUpperCase();
+    let suma = args[1];
 
-    let coins = money.money;
-    console.log(args[1]);
+    Money.findOne({
+      userID: message.author.id,
+     serverID: message.guild.id
+    }, (err, money) => {
 
-    if(err) console.log(err);
+      let coins = money.money;
+      console.log(args[1]);
 
-    if(coins < 1) return message.reply("Tu neturi žetonu");//Ziuri ar turi zetonu
+      if(err) console.log(err);
 
-    if(coins < suma) return message.reply("Tu neturi tiek žetonu");//Ziuri ar dedi nedaugiau kiek turi
+      if(!args[0]) return message.reply("herbas/skaicius suma").then(msg => {msg.delete(5000)});//help
 
-    console.log(random);
+      if(!args[1]) return message.reply("Nenurodei sumos").then(msg => {msg.delete(5000)});//ziurim ar nuroode suma
 
-if(msg.includes("HERBAS")){
-  //Herbas
-  money.money = money.money - suma;
+      if(args[1] === String) return message.reply("Tu negali rašyti žodžiu").then(msg => {msg.delete(5000)});//check if zodis
 
-  if(random == 0){
-    wCoins = suma * 2;
+      if(args[1] < 0) return message.reply("Tu negali rašyti minusinio skaičio").then(msg => {msg.delete(5000)});
 
-    let winEmbed = new Discord.RichEmbed()
-    .setAuthor(message.author.username)
-    .addField("Laimėjai!💸", wCoins)
-    .setColor("#ffc132")
-    .addField("Dabar turi", money.money + wCoins);
+      if(coins < 1) return message.reply("Tu neturi žetonu").then(msg => {msg.delete(5000)});//Ziuri ar turi zetonu
 
-    message.channel.send(winEmbed).then(msg => {msg.delete(7000)});
-    money.money = money.money + wCoins;
+      if(coins < suma) return message.reply("Tu neturi tiek žetonu").then(msg => {msg.delete(5000)});//Ziuri ar dedi nedaugiau kiek turi
 
-  }else{
+      console.log(random);
 
-    let losEmbed = new Discord.RichEmbed()
-    .setAuthor(message.author.username)
-    .addField("Pralošei😰", suma)
-    .setColor("#ffc132")
-    .addField("Dabar turi", money.money);
 
-    message.channel.send(losEmbed).then(msg => {msg.delete(7000)});
+  if(msg.includes("HERBAS")){
+    //Herbas
+    money.money = money.money - suma;
 
+    if(random == 0){
+      wCoins = suma * 2;
+
+      let winEmbed = new Discord.RichEmbed()
+      .setAuthor(message.author.username)
+      .addField("Laimėjai!💸", wCoins)
+      .setColor("#ffc132")
+      .addField("Dabar turi", money.money + wCoins);
+
+      message.channel.send(winEmbed).then(msg => {msg.delete(7000)});
+      money.money = money.money + wCoins;
+
+    }else{
+
+      let losEmbed = new Discord.RichEmbed()
+      .setAuthor(message.author.username)
+      .addField("Pralošei😰", suma)
+      .setColor("#ffc132")
+      .addField("Dabar turi", money.money);
+
+      message.channel.send(losEmbed).then(msg => {msg.delete(7000)});
+
+
+    }
+    money.save();
+
+  };
+
+  if(msg.includes("SKAICIUS")){
+    money.money = money.money - suma;
+
+
+    //Herbas
+    if(random == 0){
+      wCoins = suma * 2;
+
+      let winEmbed = new Discord.RichEmbed()
+      .setAuthor(message.author.username)
+      .addField("Laimėjai!💸", wCoins)
+      .setColor("#ffc132")
+      .addField("Dabar turi", money.money + wCoins);
+
+      message.channel.send(winEmbed).then(msg => {msg.delete(7000)});
+      money.money = money.money + wCoins;
+
+    }else{
+
+      let losEmbed = new Discord.RichEmbed()
+      .setAuthor(message.author.username)
+      .addField("Pralošei😰", suma)
+      .setColor("#ffc132")
+      .addField("Dabar turi", money.money);
+
+      message.channel.send(losEmbed).then(msg => {msg.delete(7000)});
+
+
+
+    }
+    money.save();
+    return;
+  };
+
+
+    })
 
   }
-  money.save();
-  return;
-};
 
-if(msg.includes("SKAICIUS")){
-  money.money = money.money - suma;
-
-  
-  //Herbas
-  if(random == 0){
-    wCoins = suma * 2;
-
-    let winEmbed = new Discord.RichEmbed()
-    .setAuthor(message.author.username)
-    .addField("Laimėjai!💸", wCoins)
-    .setColor("#ffc132")
-    .addField("Dabar turi", money.money + wCoins);
-
-    message.channel.send(winEmbed).then(msg => {msg.delete(7000)});
-    money.money = money.money + wCoins;
-
-  }else{
-
-    let losEmbed = new Discord.RichEmbed()
-    .setAuthor(message.author.username)
-    .addField("Pralošei😰", suma)
-    .setColor("#ffc132")
-    .addField("Dabar turi", money.money);
-
-    message.channel.send(losEmbed).then(msg => {msg.delete(7000)});
-
-
-
+  module.exports.help = {
+    name: "flip"
   }
-  money.save();
-  return;
-};
-
-
-  })
-}
-
-module.exports.help = {
-  name: "flip"
-}
