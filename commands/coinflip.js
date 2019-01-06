@@ -30,7 +30,6 @@ mongoose.connect(process.env.MONGOOSE, {
     }, (err, money) => {
 
       let coins = money.money;
-      console.log(args[1]);
 
       if(err) console.log(err);
 
@@ -46,10 +45,10 @@ mongoose.connect(process.env.MONGOOSE, {
 
       if(coins < suma) return message.reply("Tu neturi tiek žetonu").then(msg => {msg.delete(5000)});//Ziuri ar dedi nedaugiau kiek turi
 
-      console.log(random);
 
 
-  if(msg.includes("HERBAS")){
+
+  if(msg.includes("HERBAS") || msg.includes("H")){
     //Herbas
     money.money = money.money - suma;
 
@@ -81,7 +80,7 @@ mongoose.connect(process.env.MONGOOSE, {
 
   };
 
-  if(msg.includes("SKAICIUS")){
+  if(msg.includes("SKAICIUS") || msg.includes("S")){
     money.money = money.money - suma;
 
 
