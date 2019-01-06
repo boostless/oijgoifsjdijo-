@@ -61,6 +61,9 @@ if(msg.includes("HERBAS")){
 };
 
 if(msg.includes("SKAICIUS")){
+  money.money = money.money - suma;
+  money.save();
+  
   //Herbas
   if(random == 0){
     wCoins = suma * 2;
