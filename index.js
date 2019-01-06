@@ -5,7 +5,7 @@ const fs = require("fs")
 const bot = new Discord.Client({disableEveryone: true});
 const antispam = require("discord-anti-spam");
 bot.commands = new Discord.Collection();
-mongoose.connect(procces.env.mongoose, {
+mongoose.connect"mongodb+srv://jonas68824:vakaris12@testingofficerbot-tlndb.mongodb.net/officerbot", {
   useNewUrlParser: true });//MOngoose database
 const Money = require("./models/money.js");
 const XP = require("./models/xp.js");
