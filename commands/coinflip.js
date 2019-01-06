@@ -31,6 +31,8 @@ module.exports.run = async (bot, message, args)=>{
 
 if(msg.includes("HERBAS")){
   //Herbas
+  money.money = money.money - suma;
+  money.save();
   if(random == 0){
     wCoins = suma * 2;
 
