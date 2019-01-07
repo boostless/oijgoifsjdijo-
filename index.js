@@ -103,9 +103,7 @@ bot.on("message", async message => {
 
   //mongoose coins
 let coinAmt = Math.ceil(Math.random() * 15) + 1;
-  let baseAmt = Math.ceil(Math.random() * 15) + 1;
-
-console.log(`${baseAmt} ; ${coinAmt}`);
+let baseAmt = Math.ceil(Math.random() * 15) + 1;
   Money.findOne({
     userID: message.author.id,
     serverID: message.guild.id
