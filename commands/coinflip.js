@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGOOSE, {
   module.exports.run = async (bot, message, args)=>{
     
     
-    if(message.channel.id !== "531499576398708736") return message.reply("Tu negali naudoti šitos komandos čia eik i gamble chaneli!");//Chekinam ar komanda rasoma i teisinga chaneli
+    if(message.channel.id !== "531499576398708736") return message.reply("Tu negali naudoti šitos komandos čia eik i gamble chaneli!").then(msg => {msg.delete(5000)});//Chekinam ar komanda rasoma i teisinga chaneli
 
     if(cooldown.has(message.author.id)){
       message.channel.send("**Šita komanda gali naudoti tik kas 15 sekundžiu**").then(msg => {msg.delete(5000)});
