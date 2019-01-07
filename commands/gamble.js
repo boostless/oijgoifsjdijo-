@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args)=>{
           let greenLos = new Discord.RichEmbed()//Embedas kuris raso kad laimejai
           .setColor("#87ef1f")
           .setAuthor(message.author.username)
-          .addField("Pralošei😰", `${wCoins}, išredėjo ${random} 💚`)
+          .addField("Pralošei😰", `${wCoins}, išredėjo ${randomN} 💚`)
           .addField("Dabar turi", money.money);
 
           message.channel.send(greenLos).then(msg => {msg.delete(10000)});
@@ -110,7 +110,7 @@ module.exports.run = async (bot, message, args)=>{
           let greenLos = new Discord.RichEmbed()//Embedas kuris raso kad laimejai
           .setColor("#87ef1f")
           .setAuthor(message.author.username)
-          .addField("Pralošei😰", `${wCoins}, išredėjo ${random} 💚`)
+          .addField("Pralošei😰", `${wCoins}, išredėjo ${randomN} 💚`)
           .addField("Dabar turi", money.money);
 
           message.channel.send(greenLos).then(msg => {msg.delete(10000)});
@@ -158,7 +158,7 @@ module.exports.run = async (bot, message, args)=>{
           let greenWin = new Discord.RichEmbed()//Embedas kuris raso kad laimejai
           .setColor("#87ef1f")
           .setAuthor(message.author.username)
-          .addField("😱Laimėjai!😱", `${wCoins}, išredėjo ${random} 💚`)
+          .addField("😱Laimėjai!😱", `${wCoins}, išredėjo ${randomN} 💚`)
           .addField("Dabar turi", money.money + wCoins);
 
           message.channel.send(greenWin).then(msg => {msg.delete(10000)});
