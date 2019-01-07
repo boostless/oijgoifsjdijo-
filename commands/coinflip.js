@@ -8,14 +8,14 @@ mongoose.connect(process.env.MONGOOSE, {
   module.exports.run = async (bot, message, args)=>{
 
     if(cooldown.has(message.author.id)){
-      message.channel.send("Numalšintas 10 sekundžiu").then(msg => {msg.delete(5000)});
+      message.channel.send("**Šita komanda gali naudoti tik kas 15 sekundžiu**").then(msg => {msg.delete(5000)});
       message.delete();
       return;
     }
     cooldown.add(message.author.id);
     setTimeout(() => {
       cooldown.delete(message.author.id);
-    }, 10000);
+    }, 15000);
 
 
     await message.delete();
