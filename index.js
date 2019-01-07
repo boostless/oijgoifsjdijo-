@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const fs = require("fs")
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
-mongoose.connect(process.env.MONGOOSE, {
-  useNewUrlParser: true });//MOngoose database
+mongoose.connect(process.env.MONGOOSE, {//Replace process.env.MONGOOSE to "<your mongoose login>"
+  useNewUrlParser: true });//MongoDB data base
 const Money = require("./models/money.js");
 const XP = require("./models/xp.js");
 
@@ -180,4 +180,4 @@ console.log(`${baseAmt} ; ${coinAmt}`);
 });
 
 
-bot.login(process.env.TOKEN);
+bot.login(process.env.TOKEN);//Replace process.env.TOKEN with "<yourbots token>"
