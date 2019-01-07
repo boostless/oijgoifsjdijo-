@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args)=>{
 
   await message.delete();
 
-  if(message.channel.id !== "531499576398708736") return message.reply("Tu negali naudoti šitos komandos čia eik i gamble chaneli!");//Chekinam ar komanda rasoma i teisinga chaneli
+  if(message.channel.id !== "531499576398708736") return message.reply("Tu negali naudoti šitos komandos čia eik i gamble chaneli!").then(msg => {msg.delete(5000)});//Chekinam ar komanda rasoma i teisinga chaneli
   
   //Cooldown sistema
   if(cooldown.has(message.author.id)){
