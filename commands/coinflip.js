@@ -74,9 +74,11 @@ mongoose.connect(process.env.MONGOOSE, {
 
       message.channel.send(losEmbed).then(msg => {msg.delete(7000)});
 
-
+ 
+      
     }
-    money.save();
+   money.save();
+    return;
 
   };
 
