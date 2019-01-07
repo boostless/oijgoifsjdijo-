@@ -5,8 +5,6 @@ mongoose.connect(process.env.MONGOOSE, {
 
   const Money = require("../models/money.js");
 
-
-
 module.exports.run = async (bot, message, args)=>{
 
   await message.delete();
@@ -20,11 +18,13 @@ module.exports.run = async (bot, message, args)=>{
       userID: togive.id,
       serverID: message.guild.id
     }, (err, money) => {
+
+    pCoins = kiek * 1;
       let giveEmbed = new Discord.RichEmbed()
       .setTitle("**Dievai**")
       .setColor("#ffc132")
-      .addField(`Tau ${togive.user.username}, nustatė ${args[1]} žetonu`, "😮");
-      money.money = kiek;
+      .addField(`Tau ${togive.user.username}, davė ${args[1]} žetonu`, "😮");
+      money.money = money.money + pCoins;
       money.save();
 
       message.channel.send(giveEmbed).then(msg => {msg.delete(5000)});
@@ -34,5 +34,6 @@ module.exports.run = async (bot, message, args)=>{
 }
 
 module.exports.help = {
-  name: "set"
+  name: "give"
 }
+
