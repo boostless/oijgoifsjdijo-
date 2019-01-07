@@ -11,13 +11,13 @@ module.exports.run = async (bot, message, args)=>{
 
   //Cooldown sistema
   if(cooldown.has(message.author.id)){
-    message.channel.send("**Šita komanda gali naudoti kas 20 sekundžiu**").then(msg => {msg.delete(5000)});
+    message.channel.send("**Šita komanda gali naudoti kas 10 sekundžiu**").then(msg => {msg.delete(5000)});
     return;
   }
   cooldown.add(message.author.id);
   setTimeout(() => {
     cooldown.delete(message.author.id);
-  }, 20000);
+  }, 10000);
 
 
   const msg = message.content.toUpperCase();
@@ -63,7 +63,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Pralošei😰", `${wCoins}, išredėjo ${random} 💚`)
           .addField("Dabar turi", money.money);
 
-          message.channel.send(greenLos).then(msg => {msg.delete(6000)});
+          message.channel.send(greenLos).then(msg => {msg.delete(10000)});
 
 
           console.log("lolne2")
@@ -77,7 +77,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Laimėjai!💸", `${wCoins}, išredėjo ${randomN} 🔴`)
           .addField("Dabar turi", money.money + wCoins);
 
-          message.channel.send(redWin).then(msg => {msg.delete(6000)});
+          message.channel.send(redWin).then(msg => {msg.delete(10000)});
           money.money = money.money + wCoins;
         }
       }else{
@@ -89,7 +89,7 @@ module.exports.run = async (bot, message, args)=>{
         .addField("Pralošei😰", `${suma}, išredėjo ${randomN} ⚫`)
         .addField("Dabar turi", money.money);
 
-        message.channel.send(blackLos).then(msg => {msg.delete(6000)});
+        message.channel.send(blackLos).then(msg => {msg.delete(10000)});
 
       }
       money.save();
@@ -113,7 +113,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Pralošei😰", `${wCoins}, išredėjo ${random} 💚`)
           .addField("Dabar turi", money.money);
 
-          message.channel.send(greenLos).then(msg => {msg.delete(6000)});
+          message.channel.send(greenLos).then(msg => {msg.delete(10000)});
 
 
           console.log("lolne2")
@@ -126,7 +126,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Pralošei😰", `${suma}, išredėjo ${randomN} 🔴`)
           .addField("Dabar turi", money.money);
 
-          message.channel.send(redLos).then(msg => {msg.delete(6000)});
+          message.channel.send(redLos).then(msg => {msg.delete(10000)});
         }
       }else{
 
@@ -138,7 +138,7 @@ module.exports.run = async (bot, message, args)=>{
         .addField("Laimėjai!💸", `${wCoins}, išredėjo ${randomN} ⚫`)
         .addField("Dabar turi", money.money + wCoins);
 
-        message.channel.send(blackWin).then(msg => {msg.delete(6000)});
+        message.channel.send(blackWin).then(msg => {msg.delete(10000)});
 
         money.money = money.money + wCoins;
       }
@@ -161,7 +161,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("😱Laimėjai!😱", `${wCoins}, išredėjo ${random} 💚`)
           .addField("Dabar turi", money.money + wCoins);
 
-          message.channel.send(greenWin).then(msg => {msg.delete(6000)});
+          message.channel.send(greenWin).then(msg => {msg.delete(10000)});
           money.money = money.money + wCoins;
         }else{
 
@@ -172,7 +172,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Pralošei😰", `${suma}, išredėjo ${randomN} 🔴`)
           .addField("Dabar turi", money.money);
 
-          message.channel.send(redLos).then(msg => {msg.delete(6000)});
+          message.channel.send(redLos).then(msg => {msg.delete(10000)});
         }
       }else{
 
@@ -182,7 +182,7 @@ module.exports.run = async (bot, message, args)=>{
         .addField("Pralošei😰", `${suma}, išredėjo ${randomN} ⚫`)
         .addField("Dabar turi", money.money);
 
-        message.channel.send(blackWin).then(msg => {msg.delete(6000)});
+        message.channel.send(blackWin).then(msg => {msg.delete(10000)});
 
       }
       money.save();
