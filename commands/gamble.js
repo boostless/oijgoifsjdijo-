@@ -63,7 +63,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Pralošei😰", `${wCoins}, išredėjo ${randomN} 💚`)
           .addField("Dabar turi", money.money);
 
-          message.channel.send(greenLos).then(msg => {msg.delete(10000)});
+          message.channel.send(greenLos).then(msg => {msg.delete(7000)});
 
 
           console.log("lolne2")
@@ -77,7 +77,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Laimėjai!💸", `${wCoins}, išredėjo ${randomN} 🔴`)
           .addField("Dabar turi", money.money + wCoins);
 
-          message.channel.send(redWin).then(msg => {msg.delete(10000)});
+          message.channel.send(redWin).then(msg => {msg.delete(7000)});
           money.money = money.money + wCoins;
         }
       }else{
@@ -89,7 +89,7 @@ module.exports.run = async (bot, message, args)=>{
         .addField("Pralošei😰", `${suma}, išredėjo ${randomN} ⚫`)
         .addField("Dabar turi", money.money);
 
-        message.channel.send(blackLos).then(msg => {msg.delete(10000)});
+        message.channel.send(blackLos).then(msg => {msg.delete(7000)});
 
       }
       money.save();
@@ -113,7 +113,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Pralošei😰", `${wCoins}, išredėjo ${randomN} 💚`)
           .addField("Dabar turi", money.money);
 
-          message.channel.send(greenLos).then(msg => {msg.delete(10000)});
+          message.channel.send(greenLos).then(msg => {msg.delete(7000)});
 
 
           console.log("lolne2")
@@ -126,7 +126,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Pralošei😰", `${suma}, išredėjo ${randomN} 🔴`)
           .addField("Dabar turi", money.money);
 
-          message.channel.send(redLos).then(msg => {msg.delete(10000)});
+          message.channel.send(redLos).then(msg => {msg.delete(7000)});
         }
       }else{
 
@@ -138,7 +138,7 @@ module.exports.run = async (bot, message, args)=>{
         .addField("Laimėjai!💸", `${wCoins}, išredėjo ${randomN} ⚫`)
         .addField("Dabar turi", money.money + wCoins);
 
-        message.channel.send(blackWin).then(msg => {msg.delete(10000)});
+        message.channel.send(blackWin).then(msg => {msg.delete(7000)});
 
         money.money = money.money + wCoins;
       }
@@ -161,7 +161,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("😱Laimėjai!😱", `${wCoins}, išredėjo ${randomN} 💚`)
           .addField("Dabar turi", money.money + wCoins);
 
-          message.channel.send(greenWin).then(msg => {msg.delete(10000)});
+          message.channel.send(greenWin).then(msg => {msg.delete(7000)});
           money.money = money.money + wCoins;
         }else{
 
@@ -172,7 +172,7 @@ module.exports.run = async (bot, message, args)=>{
           .addField("Pralošei😰", `${suma}, išredėjo ${randomN} 🔴`)
           .addField("Dabar turi", money.money);
 
-          message.channel.send(redLos).then(msg => {msg.delete(10000)});
+          message.channel.send(redLos).then(msg => {msg.delete(7000)});
         }
       }else{
 
@@ -182,7 +182,7 @@ module.exports.run = async (bot, message, args)=>{
         .addField("Pralošei😰", `${suma}, išredėjo ${randomN} ⚫`)
         .addField("Dabar turi", money.money);
 
-        message.channel.send(blackWin).then(msg => {msg.delete(10000)});
+        message.channel.send(blackWin).then(msg => {msg.delete(7000)});
 
       }
       money.save();
