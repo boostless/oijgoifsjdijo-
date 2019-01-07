@@ -23,7 +23,6 @@ module.exports.run = async (bot, message, args)=>{
   const msg = message.content.toUpperCase();
   let randomN = Math.floor(Math.random() * 36);//Random numbers
   let suma = args[1];
-  console.log(randomN);
 
   Money.findOne({
     userID: message.author.id, //Chekinam koks cia zmogus raso
@@ -66,7 +65,6 @@ module.exports.run = async (bot, message, args)=>{
           message.channel.send(greenLos).then(msg => {msg.delete(7000)});
 
 
-          console.log("lolne2")
         }else{
 
           wCoins = suma * 2//Padauginam laimejimus
@@ -116,7 +114,6 @@ module.exports.run = async (bot, message, args)=>{
           message.channel.send(greenLos).then(msg => {msg.delete(7000)});
 
 
-          console.log("lolne2")
         }else{
 
 
