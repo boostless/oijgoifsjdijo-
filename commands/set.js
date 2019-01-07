@@ -24,7 +24,8 @@ module.exports.run = async (bot, message, args)=>{
       .setTitle("**Dievai**")
       .setColor("#ffc132")
       .addField(`Tau ${togive.user.username}, nustatė ${args[1]} žetonu`, "😮");
-      money.money = kiek;
+      pCoins = kiek;
+      money.money = money.money + pCoins;
       money.save();
 
       message.channel.send(giveEmbed).then(msg => {msg.delete(5000)});
