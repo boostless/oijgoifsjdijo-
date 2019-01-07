@@ -102,8 +102,10 @@ bot.on("message", async message => {
 
 
   //mongoose coins
-let coinAmt = Math.ceil(Math.random() * 15) + 1;
-let baseAmt = Math.ceil(Math.random() * 15) + 1;
+  let coinAmt = Math.ceil(Math.random() * 15) + 1;
+  let baseAmt = Math.ceil(Math.random() * 15) + 1;
+
+console.log(`${baseAmt} ; ${coinAmt}`);
   Money.findOne({
     userID: message.author.id,
     serverID: message.guild.id
@@ -130,6 +132,7 @@ let baseAmt = Math.ceil(Math.random() * 15) + 1;
       message.channel.send(coinAdd).then(msg => {msg.delete(5000)});
     }
   })
+
 
 
   //mongoose xp sytem
