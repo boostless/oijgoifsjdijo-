@@ -5,6 +5,8 @@ mongoose.connect(process.env.MONGOOSE, {
  const Money = require("../models/money.js");
 
 module.exports.run = async (bot, message, args)=>{
+  
+  await message.delete();
   //$send @name amount
   let tosend = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   //gaunam zmogu kam reikia nusiusti pinigu
@@ -42,12 +44,6 @@ module.exports.run = async (bot, message, args)=>{
 
     money.money = money.money - suma;
 
-    let giveEmbed = new Discord.RichEmbed()
-    .setColor("#ffc132")
-    .setAuthor(message.author.username)
-    .addField(`Tu nusiuntei ${suma} žetonu, ${tosend.user.username}!`, `Dabar turi ${money.money - suma}`);
-    message.channel.send(giveEmbed).then(msg => {msg.delete(6000)});
-
     money.save();
 
     Money.findOne({
@@ -70,25 +66,6 @@ module.exports.run = async (bot, message, args)=>{
   })
 
 
-  //Pridedam pinigus prie tosend zmogaus
-
-  // Money.findOne({
-  //   userID: tosend.id,
-  //   serverID: message.guild.id
-  // }, (err, money) => {
-  //   if(err) console.log(err);
-  //   money.money = money.money + suma;
-  //
-  //   let gaveEmbed = new Discord.RichEmbed()
-  //   .setColor("#ffc132")
-  //   .setAuthor(tosend.user.username)
-  //   .addField(`${author} tau atsiunte ${suma} žetonu!💸`, `Dabar turi ${money.money + suma}`);
-  //
-  //   message.channel.send(gaveEmbed).then(msg => {msg.delete(6000)});
-  //   money.save();
-  //   return;
-  //
-  // })
 
 }
 
