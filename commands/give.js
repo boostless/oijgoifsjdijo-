@@ -56,7 +56,7 @@ module.exports.run = async (bot, message, args)=>{
       let gaveEmbed = new Discord.RichEmbed()
       .setColor("#ffc132")
       .setAuthor(tosend.user.username)
-      .addField(`${author} tau atsiunte ${suma} žetonu!💸`, `Dabar turi ${money.money + suma}`);
+      .addField(`${author} tau atsiunte ${suma} žetonu!💸`, `Dabar turi ${money.money}`);
 
       message.channel.send(gaveEmbed).then(msg => {msg.delete(6000)});
       money.save();
