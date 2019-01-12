@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://jonas68824:vakaris12@testingofficerbot-tlndb.mongodb.net/bot", {
-  useNewUrlParser: true });//MongoDB connect
+mongoose.connect(process.env.MONGOOSE, {
+  useNewUrlParser: true });//MOngoose database connect
  const Money = require("../models/money.js");
 
 module.exports.run = async (bot, message, args)=>{
@@ -93,5 +93,5 @@ module.exports.run = async (bot, message, args)=>{
 }
 
 module.exports.help = {
-  name: "send"
+  name: "give"
 }
