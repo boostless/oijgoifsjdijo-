@@ -171,10 +171,6 @@ console.log(`${baseAmt} ; ${coinAmt}`);
         message.channel.send(lvlup).then(msg => {msg.delete(5000)})
       }
 
-
-
-      xp.save().catch(err => console.log(err));
-
     };
 })
 
