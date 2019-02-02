@@ -90,6 +90,15 @@ bot.on("message", async message => {
     filterchanel.send(filterEmbed);
 
   };
+  //Chekinam ar play komanda yra parasyta ne bot chaneli
+  if(msg.includes("PLAY"))
+  {
+    if(message.channel.id !== "527557990241533972")
+    {
+      message.reply("tu negali čia rašyti šitos komandos eik į bot_channel").then(msg => {msg.delete(5000)});
+      message.delete().catch(O_o=>{});
+    }
+  };
 
 
   //ping
