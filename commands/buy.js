@@ -1,65 +1,161 @@
 const Discord = require("discord.js");
-const fs = require("fs");
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGOOSE, {
+  useNewUrlParser: true });//MOngoose database connect
+
+
+  const Money = require("../models/money.js");
+    let cooldown = new Set();
 
 
 module.exports.run = async (bot, message, args)=>{
+
+  await message.delete();
+
   const msg = message.content.toUpperCase();
-  let uAdd = message.member;
-  let sCoins = coins[message.author.id].coins;
-  let viprole = message.guild.roles.find(role => role.name === "VIP");
-  let djrole = message.guild.roles.find(role => role.name === "DJ");
-  let memrole = message.guild.roles.find(role => role.name === "Member+");
 
- if(!args[0] || args[0 == "help"]){
-   let shopEmbed = new Discord.RichEmbed()
-   .setTitle("**Parduotuvė**")
-   .setColor("#fcc45d")
-   .addField("🤑Kainos🤑" , `Tu dabar turi ${sCoins} žetonu`)
-   .addField("Member+", "150", true)
-   .addField("DJ", "250", true)
-   .addField("VIP", "500", true);
-   message.channel.send(shopEmbed).then(msg => {msg.delete(6000)});
-   return;
- }
+  let dj = message.guild.roles.find(role => role.name === "DJ");
+  let member = message.guild.roles.find(role => role.name === "Member+");
+  let vip = message.guild.roles.find(role => role.name === "VIP");
+  //Chekinam ar nieko nera parasyta
+if(!args[0])
+{
+let buyMenuembed = new Discord.RichEmbed()
+.setColor("#ffc132")
+.setTitle("*Parduotuve*")
+.setDescription("Kainos")
+.addField("DJ", "1000 Žetonu", true)
+.addField("Member+", "2000 Žetonu", true)
+.addField("VIP", "4000 Žetonu", true);
 
-  if(msg.includes("VIP")){
-    if(sCoins >= 500){
-      coins[message.author.id] = {
-        coins: sCoins - 500
-      };
-      uAdd.addRole(viprole).catch(console.error);
-      return;
-    };
-  message.reply("tu neturi pakankamai žetonu!").then(msg =>{msg.delete(5000)});
- }
-
- if(msg.includes("DJ")){
-   if(sCoins >= 250){
-     coins[message.author.id] = {
-       coins: sCoins - 250
-     };
-     uAdd.addRole(djrole).catch(console.error);
-     return;
-   };
- message.reply("tu neturi pakankamai žetonu!").then(msg =>{msg.delete(5000)});
+message.channel.send(buyMenuembed).then(msg => {msg.delete(8000)});
 }
 
-if(msg.includes("MEMBER+")){
-  if(sCoins >= 150){
-    coins[message.author.id] = {
-      coins: sCoins - 150
-    };
-    uAdd.addRole(memrole).catch(console.error);
+//DJ rolas nusipirkimas
+  if(msg.includes("DJ"))
+  {
+    if(message.member.roles.has(dj.id)) //Chekinam ar jau yra nuspirkes sita role
+    {
+    message.reply("Tu jau esi nusipirkes DJ rola!").then(msg => {msg.delete(5000)});
     return;
-  };
-message.reply("tu neturi pakankamai žetonu!").then(msg =>{msg.delete(5000)});
+  }
+    Money.findOne({
+      userID: message.author.id,
+      serverID: message.guild.id
+    }, (err, money) => {
+      if(err) console.log(err);
+
+
+      let coins = money.money;
+
+      let sumadj = 1000 * 1;
+
+      if(args[1] === String) return message.reply("Tu negali rašyti žodžiu").then(msg => {msg.delete(5000)});//check if zodis
+
+      if(args[1] < 0) return message.reply("Tu negali rašyti minusinio skaičio").then(msg => {msg.delete(5000)});
+
+      if(coins < 1) return message.reply("Tu neturi žetonu").then(msg => {msg.delete(5000)});//Ziuri ar turi zetonu
+
+      if(coins < 1000) return message.reply("Tu neturi tiek žetonu").then(msg => {msg.delete(5000)});//Ziuri ar dedi nedaugiau
+
+      money.money = money.money - sumadj
+
+      let djEmbed = new Discord.RichEmbed()
+      .setTitle("Sekmingai nusipirkai DJ rola!")
+      .setDescription(message.author)
+      .setColor("#389937")
+      .setFooter(`Dabar turi ${money.money} žetonu`, message.author.displayAvatarURL);
+      message.channel.send(djEmbed).then(msg => {msg.delete(5000)})
+      message.member.addRole(dj);
+      money.save();
+
+    })
+  }
+
+  //Member+ rolas nusipirkimas
+    if(msg.includes("MEMBER+"))
+    {
+      if(message.member.roles.has(member.id)) //Chekinam ar jau yra nuspirkes sita role
+      {
+      message.reply("Tu jau esi nusipirkes Member+ rola!").then(msg => {msg.delete(5000)});
+      return;
+    }
+      Money.findOne({
+        userID: message.author.id,
+        serverID: message.guild.id
+      }, (err, money) => {
+        if(err) console.log(err);
+
+
+        let coins = money.money;
+
+        let sumamem = 2000 * 1;
+
+        if(args[1] === String) return message.reply("Tu negali rašyti žodžiu").then(msg => {msg.delete(5000)});//check if zodis
+
+        if(args[1] < 0) return message.reply("Tu negali rašyti minusinio skaičio").then(msg => {msg.delete(5000)});
+
+        if(coins < 1) return message.reply("Tu neturi žetonu").then(msg => {msg.delete(5000)});//Ziuri ar turi zetonu
+
+        if(coins < 2000) return message.reply("Tu neturi tiek žetonu").then(msg => {msg.delete(5000)});//Ziuri ar dedi nedaugiau
+
+        money.money = money.money - sumamem
+
+        let memEmbed = new Discord.RichEmbed()
+        .setTitle("Sekmingai nusipirkai Member+ rola!")
+        .setDescription(message.author)
+        .setColor("#fcbf44")
+        .setFooter(`Dabar turi ${money.money} žetonu`, message.author.displayAvatarURL);
+        message.channel.send(memEmbed).then(msg => {msg.delete(5000)})
+        message.member.addRole(member);
+        money.save();
+
+      })
+    }
+
+    //Vip rolas nusipirkimas
+      if(msg.includes("VIP"))
+      {
+        if(message.member.roles.has(vip.id)) //Chekinam ar jau yra nuspirkes sita role
+        {
+        message.reply("Tu jau esi nusipirkes VIP rola!").then(msg => {msg.delete(5000)});
+        return;
+      }
+        Money.findOne({
+          userID: message.author.id,
+          serverID: message.guild.id
+        }, (err, money) => {
+          if(err) console.log(err);
+
+
+          let coins = money.money;
+
+          let sumavip = 4000 * 1;
+
+          if(args[1] === String) return message.reply("Tu negali rašyti žodžiu").then(msg => {msg.delete(5000)});//check if zodis
+
+          if(args[1] < 0) return message.reply("Tu negali rašyti minusinio skaičio").then(msg => {msg.delete(5000)});
+
+          if(coins < 1) return message.reply("Tu neturi žetonu").then(msg => {msg.delete(5000)});//Ziuri ar turi zetonu
+
+          if(coins < 4000) return message.reply("Tu neturi tiek žetonu").then(msg => {msg.delete(5000)});//Ziuri ar dedi nedaugiau
+
+          money.money = money.money - sumavip;
+
+          let memEmbed = new Discord.RichEmbed()
+          .setTitle("Sekmingai nusipirkai VIP rola!")
+          .setDescription(message.author)
+          .setColor("#f4e542")
+          .setFooter(`Dabar turi ${money.money} žetonu`, message.author.displayAvatarURL);
+          message.channel.send(memEmbed).then(msg => {msg.delete(5000)})
+          message.member.addRole(vip);
+          money.save();
+
+        })
+      }
+
 }
 
-fs.writeFile("./coins.json", JSON.stringify(coins), (err) =>{
-  if(err) console.log(err);
-});
-
-}
 
 module.exports.help = {
   name: "buy"
