@@ -91,7 +91,7 @@ bot.on("message", async message => {
 
   };
   //Chekinam ar play komanda yra parasyta ne bot chaneli
-  if(msg.includes("!PLAY"))
+  if(msg.includes("!PLAY") || msg.includes("!JOIN") || msg.includes("!CLEAR"))
   {
     if(message.channel.id !== "527557990241533972")
     {
