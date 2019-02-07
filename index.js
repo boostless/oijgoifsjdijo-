@@ -32,6 +32,79 @@ bot.on("ready", async () => {
   console.log(`${bot.user.username}`);
   //Cia paraso ka botas veikia tai dabar rasys Watching Patruliuoja
   bot.user.setActivity("Patruliuoja", {type: "WATCHING"});
+  
+  //Atsitiktinio skaicio zaidimas
+  let server = "521755747663609857";
+  let pgrChannel = bot.channels.find(c => c.id === "521755747663609861");//Chanelio id kuriam siusti zinutes
+  let rndTime = Math.floor(Math.random() * 5) + 1;//Random laikas minutemis max laikas 5min
+  let minutes = rndTime * 60000;//Random laikas milisekundemis
+//Intervalas
+  setInterval(() => {
+    let rSkc = Math.floor(Math.random() * 10) + 1;//Random skaicius nuo 0-100
+
+    //Zaidimo pradzios embed
+    let rndEmbed = new Discord.RichEmbed()
+    .setColor("#42f4d1")
+    .setTitle("Atsitiktinio skaičio žaidimas katik prasidėjo!")
+    .setDescription("Atspėk skaičiu nuo 1-10!");
+    //Zaidimo pabaigos bet niekas nelaimi
+    let nthEmbed = new Discord.RichEmbed()
+    .setColor("#42f4d1")
+    .setTitle("Laikas baigėsi!")
+    .setDescription(`Dėja bet niekas neatspėjo, teisingas skaičius buvo ${rSkc}`);
+
+
+    //Visas reikalingas codas kad veitku awaitMessage sistema
+
+    let number = rSkc.toString();
+    pgrChannel.send(rndEmbed).then(msg => {msg.delete(30000)})
+    .then(() => {
+      pgrChannel.awaitMessages(response => response.content === number, {
+        max: 1,
+        time: 30000,
+        errors: ['time'],
+      })
+      .then((collected) => {
+        //Completely ignores this code and goest to and end of time code if answer is correct
+          let userid = collected.first().member.id//Gaunam user id
+          let user = collected.first().member.user.username
+          let rCoins = Math.floor(Math.random() * 5) + 1//Random pinigu kiekis iki 500
+          let wcoins = rCoins * 100
+          //Pridedam laimetus pinigus
+          Money.findOne({
+            userID: userid,
+            serverID: server
+          }, (err, money) => {
+            if(err)console.log(err);
+            money.money = money.money + wcoins;
+
+            let winEmbed = new Discord.RichEmbed()
+            .setTitle(`${user} atspėjai teisingai!`)
+            .setColor("#42f4d1")
+            .setDescription(`Laimėjai ${wcoins}!`)
+            .setFooter(`Dabar turi ${money.money}`);
+
+            money.save()
+            pgrChannel.send(winEmbed).then(msg => {msg.delete(8000)});
+
+          });
+
+
+        })
+        .catch((err) => {
+          pgrChannel.send(nthEmbed).then(msg => {msg.delete(8000)});
+          console.log(err)
+        });
+
+    });
+
+    rndTime = Math.floor(Math.random() * 5) + 1;//Vel isrolinam nauja random laika
+    minutes = rndTime * 60000;
+  }, minutes)//Random laikas kiek pasikartos sitas zaidimas
+
+
+});
+  
 });
 
 //auto role add
