@@ -35,7 +35,7 @@ bot.on("ready", async () => {
   
   //Atsitiktinio skaicio zaidimas
   let server = "521755747663609857";
-  let pgrChannel = bot.channels.find(c => c.id === "521755747663609861");//Chanelio id kuriam siusti zinutes
+  let pgrChannel = bot.channels.find(c => c.id === "531499576398708736");//Chanelio id kuriam siusti zinutes
   let rndTime = Math.floor(Math.random() * 8) + 4;//Random laikas minutemis max laikas 5min
   let minutes = rndTime * 60000;//Random laikas milisekundemis
 //Intervalas
