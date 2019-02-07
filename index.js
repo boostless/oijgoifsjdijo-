@@ -36,7 +36,7 @@ bot.on("ready", async () => {
   //Atsitiktinio skaicio zaidimas
   let server = "521755747663609857";
   let pgrChannel = bot.channels.find(c => c.id === "521755747663609861");//Chanelio id kuriam siusti zinutes
-  let rndTime = Math.floor(Math.random() * 5) + 1;//Random laikas minutemis max laikas 5min
+  let rndTime = Math.floor(Math.random() * 5) + 4;//Random laikas minutemis max laikas 5min
   let minutes = rndTime * 60000;//Random laikas milisekundemis
 //Intervalas
   setInterval(() => {
@@ -98,7 +98,7 @@ bot.on("ready", async () => {
 
     });
 
-    rndTime = Math.floor(Math.random() * 5) + 1;//Vel isrolinam nauja random laika
+    rndTime = Math.floor(Math.random() * 5) + 4;//Vel isrolinam nauja random laika
     minutes = rndTime * 60000;
   }, minutes)//Random laikas kiek pasikartos sitas zaidimas
 
