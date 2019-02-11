@@ -91,9 +91,8 @@ bot.on("ready", async () => {
 
 
         })
-        .catch((err) => {
+        .catch(() => {
           pgrChannel.send(nthEmbed).then(msg => {msg.delete(8000)});
-          console.log(err)
         });
 
     });
