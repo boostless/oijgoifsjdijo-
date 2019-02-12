@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const mongoose = require("mongoose");
 const fs = require("fs")
 const bot = new Discord.Client({disableEveryone: true});
+const antispam = require("discord-anti-spam");
 bot.commands = new Discord.Collection();
 mongoose.connect(process.env.MONGOOSE, {//Replace process.env.MONGOOSE to "<your mongoose login>"
   useNewUrlParser: true });//MongoDB data base
