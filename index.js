@@ -33,6 +33,20 @@ bot.on("ready", async () => {
   //Cia paraso ka botas veikia tai dabar rasys Watching Patruliuoja
   bot.user.setActivity("Patruliuoja", {type: "WATCHING"});
   
+  // Module Configuration Constructor
+    antispam(bot, {
+         warnBuffer: 5, // Maximum ammount of messages allowed to send in the interval time before getting warned.
+         maxBuffer: 8, // Maximum amount of messages allowed to send in the interval time before getting banned.
+         interval: 2000, // Amount of time in ms users can send the maxim amount of messages(maxBuffer) before getting banned.
+         warningMessage: "Baik spaminti!", // Message users receive when warned. (message starts with '@User, ' so you only need to input continue of it.)
+         banMessage: `Buvo užbanintas, dėl spamo :)`, // Message sent in chat when user is banned. (message starts with '@User, ' so you only need to input continue of it.)
+         maxDuplicatesWarning: 7,// Maximum amount of duplicate messages a user can send in a timespan before getting warned.
+         maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned.
+         deleteMessagesAfterBanForPastDays: 7, // Deletes the message history of the banned user in x days.
+         exemptRoles: ["Boost", "Moderator", "Officer", "OfficerBot"] // Name of roles (case sensitive) that are exempt from spam filter.
+         //exemptUsers: ["MrAugu#9016"] // The Discord tags of the users (e.g: MrAugu#9016) (case sensitive) that are exempt from spam filter.
+       });
+  
   //Atsitiktinio skaicio zaidimas
   let server = "521755747663609857";
   let pgrChannel = bot.channels.find(c => c.id === "531499576398708736");//Chanelio id kuriam siusti zinutes
