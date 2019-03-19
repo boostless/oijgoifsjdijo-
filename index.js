@@ -44,7 +44,7 @@ bot.on("ready", async () => {
          maxDuplicatesWarning: 7,// Maximum amount of duplicate messages a user can send in a timespan before getting warned.
          maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned.
          deleteMessagesAfterBanForPastDays: 7, // Deletes the message history of the banned user in x days.
-         exemptRoles: ["Boost", "Moderator", "Officer", "OfficerBot"] // Name of roles (case sensitive) that are exempt from spam filter.
+         exemptRoles: ["Boost", "Moderator", "Officer", "OfficerBot", "VIP"] // Name of roles (case sensitive) that are exempt from spam filter.
          //exemptUsers: ["MrAugu#9016"] // The Discord tags of the users (e.g: MrAugu#9016) (case sensitive) that are exempt from spam filter.
        });
   
