@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args)=>{
       for(i = 0; i < 10; i++){
         let member = message.guild.members.get(res[i].userID) || "User Left";
         if(member === "User Left"){
-          embed.addField(`${i + 1}. ${member.user.username}`, `**Žetonai**: ${res[i].money}`);
+          embed.addField(`${i + 1}. ${member}`, `**Žetonai**: ${res[i].money}`);
         }else{
           embed.addField(`${i + 1}. ${member.user.username}`, `**Žetonai**: ${res[i].money}`);
         }
