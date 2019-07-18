@@ -49,7 +49,7 @@ bot.on("ready", async () => {
        });
   
  
-  
+});
 
 
 //auto role add
